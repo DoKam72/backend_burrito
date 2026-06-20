@@ -23,5 +23,6 @@ export class CreateBookDto {
 
   @IsString()
   @MinLength(1)
+  @MaxLength(3000)
   sinopsis!: string;
 }

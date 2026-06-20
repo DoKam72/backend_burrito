@@ -28,5 +28,6 @@ export class UpdateBookDto {
   @IsOptional()
   @IsString()
   @MinLength(1)
+  @MaxLength(3000)
   sinopsis?: string;
 }

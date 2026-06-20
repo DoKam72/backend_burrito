@@ -13,7 +13,7 @@ export class AdminSeedService implements OnApplicationBootstrap {
     const correo = process.env.ADMIN_EMAIL;
     const clave = process.env.ADMIN_PASSWORD;
 
-    if (!correo && !clave) {
+    if (!correo || !clave) {
       return;
     }
 
