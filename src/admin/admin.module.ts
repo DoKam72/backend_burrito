@@ -5,9 +5,10 @@ import { AdminController } from './admin.controller';
 import { AdminSeedService } from './admin-seed.service';
 import { AdminService } from './admin.service';
 import { BooksModule } from '../books/books.module';
+import { RatingsModule } from '../ratings/ratings.module';
 
 @Module({
-  imports: [AuthModule, UsersModule, BooksModule],
+  imports: [AuthModule, UsersModule, BooksModule, RatingsModule],
   controllers: [AdminController],
   providers: [AdminService, AdminSeedService],
 })
