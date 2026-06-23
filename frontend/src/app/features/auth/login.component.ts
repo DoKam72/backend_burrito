@@ -33,7 +33,7 @@ import { AuthService } from '../../core/services/auth.service';
               </a>
             </div>
 
-            <h4 class="mb-2">Bienvenido de nuevo 👋</h4>
+            <h4 class="mb-2">Bienvenido de nuevo </h4>
             <p class="mb-4">Ingresa con tu correo y contraseña para continuar.</p>
 
             <form class="mb-3" [formGroup]="form" (ngSubmit)="submit()">
@@ -97,7 +97,14 @@ export class LoginComponent {
       .login(this.form.getRawValue())
       .pipe(finalize(() => this.loading.set(false)))
       .subscribe({
-        next: (response) => void this.router.navigate([response.user.rol === 'admin' ? '/admin/dashboard' : '/galeria']),
+        next: (response) =>
+          {
+          const role = response?.user?.rol
+          ?? localStorage.getItem('role')
+          ?? 'usuario';
+            
+          void this.router.navigate([role === 'admin' ? '/admin/dashboard' : '/galeria']);
+          },
         error: (error) => this.error.set(error.error?.message ?? 'No fue posible iniciar sesión.'),
       });
   }
