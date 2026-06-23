@@ -97,14 +97,26 @@ export class LoginComponent {
       .login(this.form.getRawValue())
       .pipe(finalize(() => this.loading.set(false)))
       .subscribe({
-        next: (response) =>
-          {
-          const role = response?.user?.rol
-          ?? localStorage.getItem('role')
-          ?? 'usuario';
-            
-          void this.router.navigate([role === 'admin' ? '/admin/dashboard' : '/galeria']);
-          },
+        next: (response)=>{
+
+  void this.router.navigate([
+
+  response?.user?.rol
+  ===
+
+  'admin'
+
+  ?
+
+  '/admin/dashboard'
+
+  :
+
+  '/galeria'
+
+  ]);
+
+  },
         error: (error) => this.error.set(error.error?.message ?? 'No fue posible iniciar sesión.'),
       });
   }
